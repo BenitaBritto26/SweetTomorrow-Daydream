@@ -339,9 +339,18 @@ style navigation_button_text is gui_button_text
 style navigation_button:
     size_group "navigation"
     properties gui.button_properties("navigation_button")
+    # Custom button styling - you can modify these:
+    background None  # Removes button background
+    # background "gui/button/idle_background.png"  # Uncomment to use custom button image
+    # padding (20, 10, 20, 10)  # Uncomment to add padding (left, top, right, bottom)
 
 style navigation_button_text:
     properties gui.text_properties("navigation_button")
+    # Custom text styling:
+    color "#ffffff"  # White text
+    hover_color "#cc0066"  # Pink hover color (matches accent)
+    selected_color "#e066a3"  # Pink selected color
+    size 24  # Font size
 
 
 ## Main Menu screen ############################################################
@@ -387,7 +396,7 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    # background "gui/overlay/main_menu.png"  # Removed black background
 
 style main_menu_vbox:
     xalign 1.0
