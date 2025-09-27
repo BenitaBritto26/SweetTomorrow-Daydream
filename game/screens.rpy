@@ -339,10 +339,11 @@ style navigation_button_text is gui_button_text
 style navigation_button:
     size_group "navigation"
     properties gui.button_properties("navigation_button")
-    # Custom button styling - you can modify these:
-    background None  # Removes button background
-    # background "gui/button/idle_background.png"  # Uncomment to use custom button image
-    # padding (20, 10, 20, 10)  # Uncomment to add padding (left, top, right, bottom)
+    # Custom rounded light pink rectangle background using Solid color and Frame:
+    background Solid("#ffb3d1", xpadding=15, ypadding=8)  # Light pink background
+    hover_background Solid("#ff99c7", xpadding=15, ypadding=8)  # Slightly darker pink on hover
+    padding (30, 15, 30, 15)  # More padding to make buttons bigger
+    minimum (250, 50)  # Minimum button size (width, height)
 
 style navigation_button_text:
     properties gui.text_properties("navigation_button")
