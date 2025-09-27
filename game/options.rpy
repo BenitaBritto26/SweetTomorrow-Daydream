@@ -5,17 +5,15 @@ define config.version = "1.0"
 define build.name = "Daydream"
 
 ## Main menu ##################################################################
-
+# Main menu background is now set via gui.rpy / screen main_menu
 define gui.show_name = True
 
 ## Sound and Music ############################################################
-
 define config.has_sound = True
 define config.has_music = True
 define config.has_voice = True
 
 ## Transitions ################################################################
-
 define config.enter_transition = dissolve
 define config.exit_transition = dissolve
 define config.intra_transition = dissolve
@@ -27,20 +25,16 @@ define config.window_show_transition = Dissolve(0.2)
 define config.window_hide_transition = Dissolve(0.2)
 
 ## Preferences ################################################################
-
 default preferences.text_cps = 0
 default preferences.afm_time = 15
 
 ## Save directory #############################################################
-
 define config.save_directory = "Daydream-1758990533"
 
 ## Window icon ################################################################
-
 define config.window_icon = "gui/window_icon.png"
 
 ## Build configuration ########################################################
-
 init python:
     # Exclude unnecessary files from build
     build.classify('**~', None)
@@ -49,10 +43,10 @@ init python:
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
 
-    # To archive images, uncomment:
+    # Archive images if desired
     # build.classify('game/**.png', 'archive')
     # build.classify('game/**.jpg', 'archive')
 
-    # Include documentation
+    # Include documentation in builds
     build.documentation('*.html')
     build.documentation('*.txt')
