@@ -6,7 +6,7 @@ define build.name = "Daydream"
 
 ## Main menu ##################################################################
 # Main menu background is now set via gui.rpy / screen main_menu
-define gui.show_name = True
+define gui.show_name = False
 
 ## Sound and Music ############################################################
 define config.has_sound = True
