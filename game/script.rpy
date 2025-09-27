@@ -3,28 +3,25 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Eileen")
-image clouds = "bg clouds.png"
+define e = Character("Amelia")
+image clouds = "clouds.png"
 
 # The game starts here.
 
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-
-    scene bg clouds
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-
-    show interstellar
+    # Show clouds background with no character or text for 4 seconds
+    scene clouds
+    
+    # Wait for 4 seconds with no dialogue or characters
+    $ renpy.pause(2.5, hard=True)
+    
+    # Show interstellar image popping up
+    show interstellar with dissolve
 
     # These display lines of dialogue.
    
-    e "Hi, welcome to daydream!"
+    e "Hi, welcome to Sweet Tomorrow!"
     
     menu:
         "What is this?":
