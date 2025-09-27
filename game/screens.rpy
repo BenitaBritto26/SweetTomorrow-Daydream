@@ -298,60 +298,137 @@ screen navigation():
         spacing gui.navigation_spacing
 
         if main_menu:
-
-            textbutton _("Start") action Start()
+            # Wrap button in frame for border effect
+            frame:
+                background "#cc0066"  # Dark pink border
+                padding (3, 3, 3, 3)
+                frame:
+                    background "#ffb3d1"  # Light pink inner
+                    padding (37, 17, 37, 17)
+                    textbutton _("Start") action Start() style "navigation_button_borderless"
 
         else:
+            frame:
+                background "#cc0066"
+                padding (3, 3, 3, 3)
+                frame:
+                    background "#ffb3d1"
+                    padding (37, 17, 37, 17)
+                    textbutton _("History") action ShowMenu("history") style "navigation_button_borderless"
 
-            textbutton _("History") action ShowMenu("history")
+            frame:
+                background "#cc0066"
+                padding (3, 3, 3, 3)
+                frame:
+                    background "#ffb3d1"
+                    padding (37, 17, 37, 17)
+                    textbutton _("Save") action ShowMenu("save") style "navigation_button_borderless"
 
-            textbutton _("Save") action ShowMenu("save")
+        frame:
+            background "#cc0066"
+            padding (3, 3, 3, 3)
+            frame:
+                background "#ffb3d1"
+                padding (37, 17, 37, 17)
+                textbutton _("Load") action ShowMenu("load") style "navigation_button_borderless"
 
-        textbutton _("Load") action ShowMenu("load")
-
-        textbutton _("Preferences") action ShowMenu("preferences")
+        frame:
+            background "#cc0066"
+            padding (3, 3, 3, 3)
+            frame:
+                background "#ffb3d1"
+                padding (37, 17, 37, 17)
+                textbutton _("Preferences") action ShowMenu("preferences") style "navigation_button_borderless"
 
         if _in_replay:
-
-            textbutton _("End Replay") action EndReplay(confirm=True)
+            frame:
+                background "#cc0066"
+                padding (3, 3, 3, 3)
+                frame:
+                    background "#ffb3d1"
+                    padding (37, 17, 37, 17)
+                    textbutton _("End Replay") action EndReplay(confirm=True) style "navigation_button_borderless"
 
         elif not main_menu:
+            frame:
+                background "#cc0066"
+                padding (3, 3, 3, 3)
+                frame:
+                    background "#ffb3d1"
+                    padding (37, 17, 37, 17)
+                    textbutton _("Main Menu") action MainMenu() style "navigation_button_borderless"
 
-            textbutton _("Main Menu") action MainMenu()
-
-        textbutton _("About") action ShowMenu("about")
+        frame:
+            background "#cc0066"
+            padding (3, 3, 3, 3)
+            frame:
+                background "#ffb3d1"
+                padding (37, 17, 37, 17)
+                textbutton _("About") action ShowMenu("about") style "navigation_button_borderless"
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+            frame:
+                background "#cc0066"
+                padding (3, 3, 3, 3)
+                frame:
+                    background "#ffb3d1"
+                    padding (37, 17, 37, 17)
+                    textbutton _("Help") action ShowMenu("help") style "navigation_button_borderless"
 
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+            frame:
+                background "#cc0066"
+                padding (3, 3, 3, 3)
+                frame:
+                    background "#ffb3d1"
+                    padding (37, 17, 37, 17)
+                    textbutton _("Quit") action Quit(confirm=not main_menu) style "navigation_button_borderless"
 
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
 
+# New borderless style for buttons inside frames
+style navigation_button_borderless is navigation_button:
+    background None
+    hover_background None
+    selected_background None
+    padding (0, 0, 0, 0)
+    minimum (290, 54)
+
+style navigation_button_borderless_text is navigation_button_text
+
 style navigation_button:
     size_group "navigation"
     properties gui.button_properties("navigation_button")
-    # Custom rounded light pink rectangle background using Solid color and Frame:
-    background Solid("#ffb3d1", xpadding=15, ypadding=8)  # Light pink background
-    hover_background Solid("#ff99c7", xpadding=15, ypadding=8)  # Slightly darker pink on hover
-    padding (30, 15, 30, 15)  # More padding to make buttons bigger
-    minimum (250, 50)  # Minimum button size (width, height)
+    # Light pink background with border effect using existing button graphics
+    background "#ffb3d1"  # Light pink background
+    hover_background "#ff99c7"  # Darker pink on hover
+    insensitive_background "#ffcce6"  # Even lighter pink when disabled
+    padding (40, 20, 40, 20)  # Bigger padding for larger buttons
+    minimum (300, 60)  # Larger minimum size
+    margin (0, 5, 0, 5)  # Spacing between buttons
+    # Add border effect using existing UI elements
+    left_margin 2
+    right_margin 2
+    top_margin 2
+    bottom_margin 2
 
 style navigation_button_text:
     properties gui.text_properties("navigation_button")
-    # Custom text styling:
-    color "#ffffff"  # White text
-    hover_color "#cc0066"  # Pink hover color (matches accent)
-    selected_color "#e066a3"  # Pink selected color
-    size 24  # Font size
+    # Custom text styling with cute font and bold:
+    color "#444444"  # Dark gray text for better readability on light pink
+    hover_color "#ffffff"  # White text on hover
+    selected_color "#ffffff"  # White text when selected
+    size 28  # Larger font size for bigger buttons
+    font "DejaVuSans.ttf"  # Cute, rounded font (you can replace with custom font)
+    bold True  # Make text bold
+    text_align 0.5  # Center align text
 
 
 ## Main Menu screen ############################################################
