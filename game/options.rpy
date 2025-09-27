@@ -24,8 +24,8 @@ define config.after_load_transition = None
 define config.end_game_transition = None
 
 define config.window = "auto"
-define config.window_show_transition = Dissolve(.2)
-define config.window_hide_transition = Dissolve(.2)
+define config.window_show_transition = Dissolve(0.2)
+define config.window_hide_transition = Dissolve(0.2)
 
 ## Preferences ################################################################
 
@@ -43,14 +43,17 @@ define config.window_icon = "gui/window_icon.png"
 ## Build configuration ########################################################
 
 init python:
+    # Exclude unnecessary files from build
     build.classify('**~', None)
     build.classify('**.bak', None)
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
 
+    # To archive images, uncomment:
     # build.classify('game/**.png', 'archive')
     # build.classify('game/**.jpg', 'archive')
 
+    # Include documentation
     build.documentation('*.html')
     build.documentation('*.txt')
