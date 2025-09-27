@@ -298,71 +298,71 @@ screen navigation():
         spacing gui.navigation_spacing
 
         if main_menu:
-            # Wrap button in frame for border effect
+            # Wrap button in frame for rounded border effect
             frame:
-                background "#cc0066"  # Dark pink border
+                background Frame(Solid("#cc0066"), 15, 15, 15, 15)  # Dark pink rounded border
                 padding (3, 3, 3, 3)
                 frame:
-                    background "#ffb3d1"  # Light pink inner
+                    background Frame(Solid("#ffb3d1"), 12, 12, 12, 12)  # Light pink rounded inner
                     padding (37, 17, 37, 17)
                     textbutton _("Start") action Start() style "navigation_button_borderless"
 
         else:
             frame:
-                background "#cc0066"
+                background Frame(Solid("#cc0066"), 15, 15, 15, 15)
                 padding (3, 3, 3, 3)
                 frame:
-                    background "#ffb3d1"
+                    background Frame(Solid("#ffb3d1"), 12, 12, 12, 12)
                     padding (37, 17, 37, 17)
                     textbutton _("History") action ShowMenu("history") style "navigation_button_borderless"
 
             frame:
-                background "#cc0066"
+                background Frame(Solid("#cc0066"), 15, 15, 15, 15)
                 padding (3, 3, 3, 3)
                 frame:
-                    background "#ffb3d1"
+                    background Frame(Solid("#ffb3d1"), 12, 12, 12, 12)
                     padding (37, 17, 37, 17)
                     textbutton _("Save") action ShowMenu("save") style "navigation_button_borderless"
 
         frame:
-            background "#cc0066"
+            background Frame(Solid("#cc0066"), 15, 15, 15, 15)
             padding (3, 3, 3, 3)
             frame:
-                background "#ffb3d1"
+                background Frame(Solid("#ffb3d1"), 12, 12, 12, 12)
                 padding (37, 17, 37, 17)
                 textbutton _("Load") action ShowMenu("load") style "navigation_button_borderless"
 
         frame:
-            background "#cc0066"
+            background Frame(Solid("#cc0066"), 15, 15, 15, 15)
             padding (3, 3, 3, 3)
             frame:
-                background "#ffb3d1"
+                background Frame(Solid("#ffb3d1"), 12, 12, 12, 12)
                 padding (37, 17, 37, 17)
                 textbutton _("Preferences") action ShowMenu("preferences") style "navigation_button_borderless"
 
         if _in_replay:
             frame:
-                background "#cc0066"
+                background Frame(Solid("#cc0066"), 15, 15, 15, 15)
                 padding (3, 3, 3, 3)
                 frame:
-                    background "#ffb3d1"
+                    background Frame(Solid("#ffb3d1"), 12, 12, 12, 12)
                     padding (37, 17, 37, 17)
                     textbutton _("End Replay") action EndReplay(confirm=True) style "navigation_button_borderless"
 
         elif not main_menu:
             frame:
-                background "#cc0066"
+                background Frame(Solid("#cc0066"), 15, 15, 15, 15)
                 padding (3, 3, 3, 3)
                 frame:
-                    background "#ffb3d1"
+                    background Frame(Solid("#ffb3d1"), 12, 12, 12, 12)
                     padding (37, 17, 37, 17)
                     textbutton _("Main Menu") action MainMenu() style "navigation_button_borderless"
 
         frame:
-            background "#cc0066"
+            background Frame(Solid("#cc0066"), 15, 15, 15, 15)
             padding (3, 3, 3, 3)
             frame:
-                background "#ffb3d1"
+                background Frame(Solid("#ffb3d1"), 12, 12, 12, 12)
                 padding (37, 17, 37, 17)
                 textbutton _("About") action ShowMenu("about") style "navigation_button_borderless"
 
@@ -370,10 +370,10 @@ screen navigation():
 
             ## Help isn't necessary or relevant to mobile devices.
             frame:
-                background "#cc0066"
+                background Frame(Solid("#cc0066"), 15, 15, 15, 15)
                 padding (3, 3, 3, 3)
                 frame:
-                    background "#ffb3d1"
+                    background Frame(Solid("#ffb3d1"), 12, 12, 12, 12)
                     padding (37, 17, 37, 17)
                     textbutton _("Help") action ShowMenu("help") style "navigation_button_borderless"
 
@@ -382,10 +382,10 @@ screen navigation():
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
             frame:
-                background "#cc0066"
+                background Frame(Solid("#cc0066"), 15, 15, 15, 15)
                 padding (3, 3, 3, 3)
                 frame:
-                    background "#ffb3d1"
+                    background Frame(Solid("#ffb3d1"), 12, 12, 12, 12)
                     padding (37, 17, 37, 17)
                     textbutton _("Quit") action Quit(confirm=not main_menu) style "navigation_button_borderless"
 
@@ -421,7 +421,7 @@ style navigation_button:
 
 style navigation_button_text:
     properties gui.text_properties("navigation_button")
-    # Custom text styling with cute font and bold:
+    # Custom text styling with reduced boldness:
     color "#444444"  # Dark gray text for better readability on light pink
     hover_color "#ffffff"  # White text on hover
     selected_color "#ffffff"  # White text when selected
@@ -429,6 +429,8 @@ style navigation_button_text:
     font "DejaVuSans.ttf"  # Cute, rounded font (you can replace with custom font)
     bold True  # Make text bold
     text_align 0.5  # Center align text
+    # Reduced outline for subtle boldness
+    outlines [(1, "#222222", 0, 0)]
 
 
 ## Main Menu screen ############################################################

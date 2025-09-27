@@ -1,12 +1,15 @@
 ﻿## Basics ######################################################################
 
-define config.name = _("Daydream")
+define config.name = _("Sweet Tomorrow")
 define config.version = "1.0"
-define build.name = "Daydream"
+define build.name = "Sweet Tomorrow"
 
 ## Main menu ##################################################################
 # Main menu background is now set via gui.rpy / screen main_menu
 define gui.show_name = False
+
+## About screen info ##########################################################
+define gui.about = _("An innocent schoolgirl named Amelia relies on your help to make her decisions: getting ready for school, packing her lunch, and much more. But your choices will define her fate, and whether her deepest, darkest secrets are revealed.")
 
 ## Sound and Music ############################################################
 define config.has_sound = True
