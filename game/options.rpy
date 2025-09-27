@@ -6,7 +6,6 @@ define build.name = "Daydream"
 
 ## Main menu ##################################################################
 
-define config.main_menu_background = "gui/startscreen.png"
 define gui.show_name = True
 
 ## Sound and Music ############################################################
