@@ -11,10 +11,6 @@ image nightgown = "nightgown.png"
 image talknightgown = "talknightgown.png"
 character newscaster = Character("Newscaster")
 
-<<<<<<< Updated upstream
-# Define a transform to position the image at the bottom.
-# This transform must include an indented block of statements.
-=======
 # Define cooking ingredient images
 image egg = "egg.png"
 image rat = "rat.png"
@@ -24,18 +20,17 @@ image pan = "pan.png"
 # Define kitchen background that stretches to fit the whole screen
 image bg kitchen = Transform("kitchen.png", size=(1920, 1080))
 
->>>>>>> Stashed changes
 transform bottom_position:
 # Scale the image a bit and place it centered at the bottom.
     zoom 2.5
     zoom 3
-xalign 0.5
+    xalign 0.5
 # yalign 1.0 places the image at the bottom of the window. The
 # original used 2.0 which is outside the usual 0..1 range.
     yalign 1.0
     yalign 0.75
 # Additional vertical offset if you want it further down.
-yoffset 600
+    yoffset 600
 # Even further down
 
 transform bottom_position3:
@@ -43,7 +38,7 @@ transform bottom_position3:
     xoffset 100
     yoffset 200
 
-bottom_position_bloody:
+transformbottom_position_bloody:
     zoom 3
     xoffset 10
     yoffset 150
@@ -72,12 +67,10 @@ transform top_right:
 label start:
 
     # Show clouds background with no character or text for 4 seconds
-    scene clouds
     # Show room background with no character or text for 4 seconds
     scene bg room
 
 # Wait for 4 seconds with no dialogue or characters
-    $ renpy.pause(2.5, hard=True)
     $ renpy.pause(1.5, hard=True)
 
 # Show the nightgown image positioned at the bottom
