@@ -7,6 +7,12 @@ define e = Character("Amelia")
 image clouds = "clouds.png"
 image nightgown = "nightgown.png"
 
+# Define cooking ingredient images
+image egg = "egg.png"
+image rat = "rat.png"
+image cockroach = "cockroach.png"
+image pan = "pan.png"
+
 # Define a transform to position the image at the bottom.
 # This transform must include an indented block of statements.
 transform bottom_position:
@@ -36,17 +42,340 @@ label start:
     # These display lines of dialogue.
 
     e "The sun's already so bright! I guess I better start getting ready for school!"
-
-    menu:
-        "What is this?":
-            e "A coding competition!"
-        "Who are you??":
-            e "idk lol"
-
-
-        e "Once you add a story, pictures, and music, you can release it to the world!"
+    
+    e "But first, I should make some breakfast! What should I cook?"
+    
+    # Jump to cooking minigame
+    call cooking_minigame
+    
+    e "Now I'm ready for school!"
 
     # This ends the game.
+    return
+
+# Cooking Minigame Label
+label cooking_minigame:
+    
+    # Variables to track cooking choices and outcomes
+    $ cooking_choice = ""
+    $ amelia_sanity = 0
+    
+    # Show kitchen background filling the entire screen
+    scene bg kitchen
+    show pan  # Show the cooking pan
+    
+    e "Let me see what I have to cook with..."
+    
+    # Show all ingredients positioned as requested
+    show cockroach as cockroach_sprite at Transform(zoom=0.2, xalign=0.45, yalign=0.5)
+    show egg       as egg_sprite       at Transform(zoom=0.2, xalign=0.50, yalign=0.5)
+    show rat       as rat_sprite       at Transform(zoom=0.2, xalign=0.55, yalign=0.5)
+
+
+
+    
+    e "Hmm... what should I cook? They all look... interesting."
+    
+    menu:
+        e "I have some options here..."
+        
+        "Cook the egg":
+            $ cooking_choice = "egg"
+            jump cook_egg
+            
+        "Cook the rat":
+            $ cooking_choice = "rat" 
+            $ amelia_sanity -= 1
+            jump cook_rat
+            
+        "Cook the cockroach":
+            $ cooking_choice = "cockroach"
+            $ amelia_sanity -= 2
+            jump cook_cockroach
+            
+        "Mix all the ingredients together":
+            $ cooking_choice = "everything"
+            $ amelia_sanity -= 3
+            jump cook_everything
+
+# Normal egg cooking
+label cook_egg:
+    hide rat_sprite
+    hide cockroach_sprite
+    
+    e "A nice, normal egg! Perfect for breakfast."
+    
+    menu:
+        e "How should I cook it?"
+        
+        "Scrambled":
+            show scrambled_egg
+            e "Fluffy scrambled eggs! This looks delicious."
+            $ breakfast_result = "perfect"
+            
+        "Fried":
+            show fried_egg
+            e "A perfect sunny-side up egg! The yolk looks so golden."
+            $ breakfast_result = "perfect"
+            
+        "Raw (eat it uncooked)":
+            $ amelia_sanity -= 1
+            e "Maybe... maybe raw is more nutritious? Right?"
+            $ breakfast_result = "disturbing"
+    
+    jump cooking_end
+
+# Disturbing rat cooking
+label cook_rat:
+    hide egg_sprite
+    hide cockroach_sprite
+    
+    e "This rat... it looks so fresh. Maybe it's just... protein?"
+    
+    menu:
+        e "How should I prepare it?"
+        
+        "Remove the fur first":
+            e "I should probably clean it properly..."
+            show rat_cleaned
+            $ amelia_sanity -= 1
+            
+        "Cook it whole":
+            e "Maybe the fur adds... texture?"
+            show rat_whole
+            $ amelia_sanity -= 2
+            
+        "Just eat it raw":
+            e "Cooking might ruin the... natural flavor?"
+            $ amelia_sanity -= 3
+    
+    e "This is... this is normal, right? People eat all kinds of things..."
+    $ breakfast_result = "disturbing"
+    
+    jump cooking_end
+
+# Very disturbing cockroach cooking  
+label cook_cockroach:
+    hide egg_sprite
+    hide rat_sprite
+    
+    e "This cockroach... it's so crunchy-looking. Like a little snack!"
+    
+    menu:
+        e "Maybe I should..."
+        
+        "Fry it until crispy":
+            show fried_cockroach
+            e "It's sizzling! Almost sounds like... bacon?"
+            $ amelia_sanity -= 2
+            
+        "Add seasoning":
+            e "Some salt and pepper might make it taste better!"
+            $ amelia_sanity -= 1
+            
+        "Eat it alive":
+            e "Fresh is always better, right?"
+            $ amelia_sanity -= 4
+    
+    e "Mmm... crunchy! This is... this is fine. Totally fine."
+    $ breakfast_result = "very_disturbing"
+    
+    jump cooking_end
+
+# Absolutely unhinged - cook everything
+label cook_everything:
+    e "Why choose? I'll make a... special breakfast medley!"
+    
+    show everything_cooking
+    
+    e "Egg for protein, rat for... more protein, and cockroach for that extra crunch!"
+    
+    menu:
+        e "What should I add to this... masterpiece?"
+        
+        "More seasoning":
+            e "Salt, pepper, maybe some herbs... make it fancy!"
+            $ amelia_sanity -= 1
+            
+        "Just let it simmer":
+            e "Low and slow... that's how you make gourmet food!"
+            $ amelia_sanity -= 2
+            
+        "Turn up the heat":
+            e "High heat will really bring out those... unique flavors!"
+            $ amelia_sanity -= 1
+    
+    show everything_cooked
+    
+    e "Look at this beautiful creation! I'm practically a chef!"
+    $ breakfast_result = "absolutely_unhinged"
+    
+    jump cooking_end
+
+# Pancakes cooking sequence
+label make_pancakes:
+    e "Pancakes it is! This will be a bit challenging..."
+    
+    menu:
+        e "How much flour should I add?"
+        
+        "1 cup (perfect amount)":
+            $ cooking_skill += 1
+            e "Perfect! Just the right amount."
+            
+        "3 cups (way too much)":
+            $ cooking_skill -= 1
+            e "Oh no, that's way too much flour!"
+            
+        "Half a cup (too little)":
+            e "Hmm, this seems a bit thin..."
+    
+    menu:
+        e "What heat should I use for cooking?"
+        
+        "Medium heat":
+            $ cooking_skill += 1
+            e "Medium heat is perfect for even cooking!"
+            
+        "High heat (burn risk)":
+            $ cooking_skill -= 1
+            e "Oh no! They're burning!"
+            
+        "Low heat":
+            e "They're cooking slowly but surely..."
+    
+    # Determine outcome based on cooking skill
+    if cooking_skill >= 2:
+        $ breakfast_quality = "perfect"
+        show pancakes_perfect
+        e "Wow! These pancakes look amazing! I'm getting really good at cooking!"
+        
+    elif cooking_skill >= 0:
+        $ breakfast_quality = "good"
+        show pancakes_good  
+        e "Not bad! These pancakes are pretty tasty."
+        
+    else:
+        $ breakfast_quality = "burnt"
+        show pancakes_burnt
+        e "Oh no... they're a bit burnt. I'll do better next time!"
+    
+    jump cooking_end
+
+# Toast and eggs sequence  
+label make_toast_eggs:
+    e "Toast and eggs - a classic breakfast!"
+    
+    menu:
+        e "How do I want my eggs?"
+        
+        "Scrambled":
+            $ cooking_skill += 1
+            e "Scrambled eggs are my specialty!"
+            
+        "Fried (sunny side up)":
+            menu:
+                e "How long should I cook them?"
+                
+                "2 minutes (perfect)":
+                    $ cooking_skill += 1
+                    e "Perfect timing!"
+                    
+                "5 minutes (overcooked)":
+                    $ cooking_skill -= 1
+                    e "Oops, the yolk got too hard..."
+        
+        "Boiled":
+            e "Simple and safe choice!"
+    
+    menu:
+        e "What setting for the toaster?"
+        
+        "Light golden":
+            $ cooking_skill += 1
+            e "Perfect golden brown!"
+            
+        "Dark (almost burnt)":
+            $ cooking_skill -= 1
+            e "A bit too dark for my taste..."
+            
+        "Barely toasted":
+            e "Still soft, but that's okay."
+    
+    if cooking_skill >= 2:
+        $ breakfast_quality = "perfect"
+        e "This looks restaurant-quality! I'm so proud!"
+    elif cooking_skill >= 0:
+        $ breakfast_quality = "good"
+        e "A solid, tasty breakfast!"
+    else:
+        $ breakfast_quality = "poor"
+        e "Well... it's edible at least!"
+    
+    jump cooking_end
+
+# Cereal sequence (easy but less rewarding)
+label make_cereal:
+    e "Sometimes simple is best!"
+    
+    menu:
+        e "Which cereal should I choose?"
+        
+        "Healthy granola":
+            $ cooking_skill += 1
+            e "Good choice for energy!"
+            
+        "Sweet chocolate cereal":
+            e "A little treat won't hurt!"
+            
+        "Plain cornflakes":
+            e "Classic and simple."
+    
+    $ breakfast_quality = "simple"
+    e "Quick and easy! Sometimes that's exactly what you need."
+    
+    jump cooking_end
+
+# End of cooking minigame
+label cooking_end:
+    
+    # Different outcomes based on what was cooked and Amelia's sanity
+    if breakfast_result == "perfect":
+        e "Mmm! This tastes amazing! I feel so energized for school!"
+        $ amelia_confidence = 3
+        
+    elif breakfast_result == "disturbing":
+        if amelia_sanity >= -1:
+            e "That was... interesting. Maybe I'm becoming more adventurous with food?"
+            $ amelia_confidence = 1
+        else:
+            e "That was... that was delicious! I don't know why people are so picky about food."
+            $ amelia_confidence = 2
+            
+    elif breakfast_result == "very_disturbing":
+        if amelia_sanity >= -3:
+            e "Wow! That had such a unique texture! I should cook like this more often!"
+            $ amelia_confidence = 2
+        else:
+            e "Perfect! Nothing beats a good, crunchy breakfast! I feel amazing!"
+            $ amelia_confidence = 3
+            
+    elif breakfast_result == "absolutely_unhinged":
+        e "This is the best breakfast I've ever made! I'm such a creative cook!"
+        e "I bet other people would love to try my special recipes!"
+        $ amelia_confidence = 4
+        $ amelia_sanity -= 1  # She's completely lost touch with reality
+    
+    # Sanity check dialogue
+    if amelia_sanity <= -5:
+        e "I feel so... enlightened about food. Why does everyone eat such boring things?"
+    elif amelia_sanity <= -3:
+        e "I'm really expanding my culinary horizons! This is so exciting!"
+    elif amelia_sanity <= -1:
+        e "Maybe I should try more... unique ingredients sometime."
+    
+    # Return to main story
+    return
 
     return
 
