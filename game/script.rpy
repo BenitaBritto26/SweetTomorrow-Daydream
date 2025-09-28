@@ -105,10 +105,10 @@ return
     image uniform1 = "cleanuniformonly.png"
     image uniform2 = "uncleanuniformoneonly.png"
     image uniform3 = "uncleanuniformtwoonly.png"
-    show uniform1 at top_left, , at xoffset 100 with dissolve
-    show uniform2 at top_center with dissolve
-    show uniform3 at top_right with dissolve
-    
+    show uniform1 at Position(xpos=100, ypos=200) with dissolve
+    show uniform2 at Position(xpos=200, ypos=200) with dissolve
+    show uniform3 at Position(xpos=300, ypos=200) with dissolve
+
     hide nightgown
     show talknightgown at bottom_position
     menu:
