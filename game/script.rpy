@@ -81,7 +81,7 @@ label start:
     $ renpy.pause(1.5, hard=True)
 
 # Show the nightgown image positioned at the bottom
-show nightgown at bottom_position with dissolve
+show nightgown at bottom_position
 
     # These display lines of dialogue.
 
