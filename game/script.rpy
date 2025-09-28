@@ -327,6 +327,7 @@ label choice_menu:
     show ameliaTalk at bottom_position2
 
     e "Let's go to school!"
+    show bg clouds
     e "Better start heading to school now!"
     e "*someone calls Amelia's name*"
     e "Did someone call me?"
@@ -401,10 +402,10 @@ label scarlett_confrontation:
     scarlett"Is everything alright with you? Your skirt looks like it's stained at the bottom…"
     scarlett "I thought you should know, Amelia."
 
-    show Amelia_ponder at bottom_position2
-    amelia_ponder "Why is she trying to nitpick?"
-    amelia_ponder "I mean…look at her…"
-    hide Amelia_ponder
+    show ameliaHappy at bottom_position2
+    e "Why is she trying to nitpick?"
+    e "I mean…look at her…"
+    hide ameliaHappy
 
     show angry at bottom_position2
     e "Is she trying to start a fight or something??"
@@ -442,7 +443,7 @@ label scarlett_confrontation:
 
         e "Scarlett, you misheard. They would never."
             jump ending_scarlett
-            
+
         e "I don’t care what they say. You’re just jealous."
 label ending_scarlett:
     image poster_scarlett = "missingposter_scarlett.png"
