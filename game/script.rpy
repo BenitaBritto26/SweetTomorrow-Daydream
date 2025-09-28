@@ -3,17 +3,18 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Amelia")
+define Amelia = Character("Amelia")
+define Scarlett = Character("Scarlett")
+define n = Character(None)
+define friend = Character("Friend")
+
 image bg room = Transform("bedroom.png", size =(1920, 1080))
 image bg livingroom = Transform("livingroom.png", size =(1920, 1080))
 image bg school = Transform("school.png", size =(1920, 1080))
+image bg outside = Transform("outsideHouse.png", size =(1920, 1080))
 image nightgown = "nightgown.png"
 image talknightgown = "talknightgown.png"
 
-<<<<<<< Updated upstream
-# Define a transform to position the image at the bottom.
-# This transform must include an indented block of statements.
-=======
 # Define cooking ingredient images
 image egg = "egg.png"
 image rat = "rat.png"
@@ -23,7 +24,6 @@ image pan = "pan.png"
 # Define kitchen background that stretches to fit the whole screen
 image bg kitchen = Transform("kitchen.png", size=(1920, 1080))
 
->>>>>>> Stashed changes
 transform bottom_position:
     # Scale the image a bit and place it centered at the bottom.
     zoom 3
@@ -69,25 +69,10 @@ label start:
     hide nightgown
     show talknightgown at bottom_position
    
-    e "The sun's already so bright! I guess I better start getting ready for school!"
-<<<<<<< Updated upstream
-
-    menu:
-        "What is this?":
-            e "A coding competition!"
-        "Who are you??":
-            e "idk lol"
-
-
-        e "Once you add a story, pictures, and music, you can release it to the world!"
-
-    # This ends the game.
-
-    return
-=======
+    Amelia "The sun's already so bright! I guess I better start getting ready for school!"
     # changes
-    e "First, let me get dressed."
-    e "What should I wear today?"
+    Amelia "First, let me get dressed."
+    Amelia "What should I wear today?"
     hide talknightgown
     show nightgown at bottom_position
     image uniform1 = "cleanuniformonly.png"
@@ -101,11 +86,11 @@ label start:
     show talknightgown at bottom_position
     menu:
         "The first uniform!":
-            e "Good choice!"
+            Amelia "Good choice!"
         "The second uniform!":
-            e "Sorry, I don't want to wear that. We're going to wear the first one."
+            Amelia "Sorry, I don't want to wear that. We're going to wear the first one."
         "The third uniform!":
-            e "Sorry I don't want to wear that. We're going to wear the first one."
+            Amelia "Sorry I don't want to wear that. We're going to wear the first one."
     hide talknightgown
     image ameliaHappy = "happyAmelia.png"
 
@@ -124,7 +109,7 @@ label start:
     hide ameliaHappy
     show ameliaTalk at bottom_position2
 
-    e "Now, it's time for me to make some breakfast!"
+    Amelia "Now, it's time for me to make some breakfast!"
     #call cooking_minigame
     jump cooking_minigame
 
@@ -139,17 +124,17 @@ label start:
         scene bg kitchen
         show pan  # Show the cooking pan
     
-        e "Let me see what I have to cook with..."
+        Amelia "Let me see what I have to cook with..."
     
         # Show all ingredients lined up in the center with more spacing
         show cockroach at Transform(xalign=0.2, yalign=0.5, zoom=0.4)
         show egg at Transform(xalign=0.5, yalign=0.5, zoom=0.4)
         show rat at Transform(xalign=0.8, yalign=0.5, zoom=0.1)
 
-        e "Hmm... what should I cook? They all look... interesting."
+        Amelia "Hmm... what should I cook? They all look... interesting."
     
         menu:
-            e "I have some options here..."
+            Amelia "I have some options here..."
         
             "Cook the egg":
                 $ cooking_choice = "egg"
@@ -175,26 +160,26 @@ label start:
         hide rat
         hide cockroach
         
-        e "A nice, normal egg! Perfect for breakfast."
+        Amelia "A nice, normal egg! Perfect for breakfast."
         
         menu:
-            e "How should I cook it?"
+            Amelia "How should I cook it?"
             
             "Scrambled":
                 hide egg
                 show scrambled_egg at Transform(xalign=0.5, yalign=0.5, zoom=0.4)
-                e "Fluffy scrambled eggs! This looks delicious."
+                Amelia "Fluffy scrambled eggs! This looks delicious."
                 $ breakfast_result = "perfect"
                 
             "Fried":
                 hide egg
                 show fried_egg at Transform(xalign=0.5, yalign=0.5, zoom=0.4)
-                e "A perfect sunny-side up egg! The yolk looks so golden."
+                Amelia "A perfect sunny-side up egg! The yolk looks so golden."
                 $ breakfast_result = "perfect"
                 
             "Raw (eat it uncooked)":
                 $ amelia_sanity -= 1
-                e "Maybe... maybe raw is more nutritious? Right?"
+                Amelia "Maybe... maybe raw is more nutritious? Right?"
                 $ breakfast_result = "disturbing"
         
         jump cooking_end
@@ -204,9 +189,9 @@ label start:
         hide egg
         hide cockroach
         
-        e "This rat... it looks so fresh. Maybe it's just... protein?"
-        e "I should probably clean it properly..."
-        e "This is... this is normal, right? People eat all kinds of things..."
+        Amelia "This rat... it looks so fresh. Maybe it's just... protein?"
+        Amelia "I should probably clean it properly..."
+        Amelia "This is... this is normal, right? People eat all kinds of things..."
         $ amelia_sanity -= 2
         $ breakfast_result = "disturbing"
         
@@ -217,8 +202,8 @@ label start:
         hide egg
         hide rat
         
-        e "This cockroach... it's so crunchy-looking. Like a little snack!"
-        e "Mmm... crunchy! This is... this is fine. Totally fine."
+        Amelia "This cockroach... it's so crunchy-looking. Like a little snack!"
+        Amelia "Mmm... crunchy! This is... this is fine. Totally fine."
         $ amelia_sanity -= 3
         $ breakfast_result = "very_disturbing"
         
@@ -226,27 +211,27 @@ label start:
         
     # Absolutely unhinged - cook everything
     label cook_everything:
-        e "Why choose? I'll make a... special breakfast medley!"
+        Amelia "Why choose? I'll make a... special breakfast medley!"
                 
-        e "Egg for protein, rat for... more protein, and cockroach for that extra crunch!"
+        Amelia "Egg for protein, rat for... more protein, and cockroach for that extra crunch!"
         
         menu:
-            e "What should I add to this... masterpiece?"
+            Amelia "What should I add to this... masterpiece?"
             
             "More seasoning":
-                e "Salt, pepper, maybe some herbs... make it fancy!"
+                Amelia "Salt, pepper, maybe some herbs... make it fancy!"
                 $ amelia_sanity -= 1
                 
             "Just let it simmer":
-                e "Low and slow... that's how you make gourmet food!"
+                Amelia "Low and slow... that's how you make gourmet food!"
                 $ amelia_sanity -= 2
                 
             "Turn up the heat":
-                e "High heat will really bring out those... unique flavors!"
+                Amelia "High heat will really bring out those... unique flavors!"
                 $ amelia_sanity -= 1
         
         
-        e "Look at this beautiful creation! I'm practically a chef!"
+        Amelia "Look at this beautiful creation! I'm practically a chef!"
         $ breakfast_result = "absolutely_unhinged"
         
         jump cooking_end
@@ -256,38 +241,38 @@ label start:
         
         # Different outcomes based on what was cooked and Amelia's sanity
         if breakfast_result == "perfect":
-            e "Mmm! This tastes amazing! I feel so energized for school!"
+            Amelia "Mmm! This tastes amazing! I feel so energized for school!"
             $ amelia_confidence = 3
             
         elif breakfast_result == "disturbing":
             if amelia_sanity >= -1:
-                e "That was... interesting. Maybe I'm becoming more adventurous with food?"
+                Amelia "That was... interesting. Maybe I'm becoming more adventurous with food?"
                 $ amelia_confidence = 1
             else:
-                e "That was... that was delicious! I don't know why people are so picky about food."
+                Amelia "That was... that was delicious! I don't know why people are so picky about food."
                 $ amelia_confidence = 2
                 
         elif breakfast_result == "very_disturbing":
             if amelia_sanity >= -3:
-                e "Wow! That had such a unique texture! I should cook like this more often!"
+                Amelia "Wow! That had such a unique texture! I should cook like this more often!"
                 $ amelia_confidence = 2
             else:
-                e "Perfect! Nothing beats a good, crunchy breakfast! I feel amazing!"
+                Amelia "Perfect! Nothing beats a good, crunchy breakfast! I feel amazing!"
                 $ amelia_confidence = 3
                 
         elif breakfast_result == "absolutely_unhinged":
-            e "This is the best breakfast I've ever made! I'm such a creative cook!"
-            e "I bet other people would love to try my special recipes!"
+            Amelia "This is the best breakfast I've ever made! I'm such a creative cook!"
+            Amelia "I bet other people would love to try my special recipes!"
             $ amelia_confidence = 4
             $ amelia_sanity -= 1  # She's completely lost touch with reality
         
         # Sanity check dialogue
         if amelia_sanity <= -5:
-            e "I feel so... enlightened about food. Why does everyone eat such boring things?"
+            Amelia "I feel so... enlightened about food. Why does everyone eat such boring things?"
         elif amelia_sanity <= -3:
-            e "I'm really expanding my culinary horizons! This is so exciting!"
+            Amelia "I'm really expanding my culinary horizons! This is so exciting!"
         elif amelia_sanity <= -1:
-            e "Maybe I should try more... unique ingredients sometime."
+            Amelia "Maybe I should try more... unique ingredients sometime."
     hide egg
     hide rat
     hide cockroach
@@ -295,27 +280,28 @@ label start:
     
     show ameliaTalk at bottom_position2
 
-    e "Now, I need to pack my bag. What should I bring?"    
+    Amelia "Now, I need to pack my bag. What should I bring?"    
     menu:
         "Trash":
-            e "Although I practically live in it, I don't want people to know that, so let's not bring that to school."
+            Amelia "Although I practically live in it, I don't want people to know that, so let's not bring that to school."
         "Pencils":
-            e "Great choice!"
-            e "I love to draw!"
+            Amelia "Great choice!"
+            Amelia "I love to draw!"
         "Cockroaches":
-            e "Although I practically live with them, I don't want people to know that, so let's not bring that to school."
+            Amelia "Although I practically live with them, I don't want people to know that, so let's not bring that to school."
     
     #Scene 2 (living room) Amelia stands in the living room, sun shining through the window, 
     #the tv is on and a man lays on the couch (partially visible) with his hand holding a bottle that’s spilling on the floor
     scene bg livingroom
     show ameliaTalk at bottom_position2
-    
-    e "let's go to school!"
+    Amelia "Let's go to school!"
+
     #Scene 3 (outside house) Amelia stands outside her house, her neighbor briefly visible behind her
-    e "better start heading to school now!"
+    show bg outside
+    show ameliaTalk at bottom_position2
+    Amelia "I better start heading to school now!"
     # someone calls Amelia
-    e "*someone calls Amelia's name*"
-    e "Did someone call me?"
-    
->>>>>>> Stashed changes
+    n "In the background, someone calls Amelia's name..."
+    Amelia "Did someone call me?"
+
 
