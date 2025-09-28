@@ -53,3 +53,6 @@ init python:
     # Include documentation in builds
     build.documentation('*.html')
     build.documentation('*.txt')
+
+    build.directory_name = "Sweet_Tomorrow"
+    build.include_web = True
