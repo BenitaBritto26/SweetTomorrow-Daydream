@@ -13,6 +13,9 @@ image rat = "rat.png"
 image cockroach = "cockroach.png"
 image pan = "pan.png"
 
+# Define kitchen background that stretches to fit the whole screen
+image bg kitchen = Transform("kitchen.png", size=(1920, 1080))
+
 # Define a transform to position the image at the bottom.
 # This transform must include an indented block of statements.
 transform bottom_position:
@@ -66,10 +69,10 @@ label cooking_minigame:
     
     e "Let me see what I have to cook with..."
     
-    # Show all ingredients positioned as requested
-    show cockroach as cockroach_sprite at Transform(zoom=0.2, xalign=0.45, yalign=0.5)
-    show egg       as egg_sprite       at Transform(zoom=0.2, xalign=0.50, yalign=0.5)
-    show rat       as rat_sprite       at Transform(zoom=0.2, xalign=0.55, yalign=0.5)
+    # Show all ingredients lined up in the center with more spacing
+    show cockroach at Transform(xalign=0.2, yalign=0.5, zoom=0.4)
+    show egg at Transform(xalign=0.5, yalign=0.5, zoom=0.4)
+    show rat at Transform(xalign=0.8, yalign=0.5, zoom=0.1)
 
 
 
@@ -100,8 +103,8 @@ label cooking_minigame:
 
 # Normal egg cooking
 label cook_egg:
-    hide rat_sprite
-    hide cockroach_sprite
+    hide rat
+    hide cockroach
     
     e "A nice, normal egg! Perfect for breakfast."
     
@@ -109,12 +112,14 @@ label cook_egg:
         e "How should I cook it?"
         
         "Scrambled":
-            show scrambled_egg
+            hide egg
+            show scrambled_egg at Transform(xalign=0.5, yalign=0.5, zoom=0.4)
             e "Fluffy scrambled eggs! This looks delicious."
             $ breakfast_result = "perfect"
             
         "Fried":
-            show fried_egg
+            hide egg
+            show fried_egg at Transform(xalign=0.5, yalign=0.5, zoom=0.4)
             e "A perfect sunny-side up egg! The yolk looks so golden."
             $ breakfast_result = "perfect"
             
@@ -127,58 +132,28 @@ label cook_egg:
 
 # Disturbing rat cooking
 label cook_rat:
-    hide egg_sprite
-    hide cockroach_sprite
+    hide egg
+    hide cockroach
     
     e "This rat... it looks so fresh. Maybe it's just... protein?"
-    
-    menu:
-        e "How should I prepare it?"
-        
-        "Remove the fur first":
-            e "I should probably clean it properly..."
-            show rat_cleaned
-            $ amelia_sanity -= 1
-            
-        "Cook it whole":
-            e "Maybe the fur adds... texture?"
-            show rat_whole
-            $ amelia_sanity -= 2
-            
-        "Just eat it raw":
-            e "Cooking might ruin the... natural flavor?"
-            $ amelia_sanity -= 3
-    
+    e "I should probably clean it properly..."
     e "This is... this is normal, right? People eat all kinds of things..."
+    $ amelia_sanity -= 2
     $ breakfast_result = "disturbing"
     
     jump cooking_end
 
 # Very disturbing cockroach cooking  
 label cook_cockroach:
-    hide egg_sprite
-    hide rat_sprite
+    hide egg
+    hide rat
     
     e "This cockroach... it's so crunchy-looking. Like a little snack!"
-    
-    menu:
-        e "Maybe I should..."
-        
-        "Fry it until crispy":
-            show fried_cockroach
-            e "It's sizzling! Almost sounds like... bacon?"
-            $ amelia_sanity -= 2
-            
-        "Add seasoning":
-            e "Some salt and pepper might make it taste better!"
-            $ amelia_sanity -= 1
-            
-        "Eat it alive":
-            e "Fresh is always better, right?"
-            $ amelia_sanity -= 4
-    
     e "Mmm... crunchy! This is... this is fine. Totally fine."
+    $ amelia_sanity -= 3
     $ breakfast_result = "very_disturbing"
+    
+    jump cooking_end
     
     jump cooking_end
 
