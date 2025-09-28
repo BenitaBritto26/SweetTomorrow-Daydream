@@ -324,20 +324,127 @@ label start:
         ypos (100)
 
     show twoFriends at bottom_right with dissolve
+    n "Amelia chats with her friends for a bit..."
+    transform bottom_right2:
+        zoom 3
+        xpos (1000)
+    image scarlettNorm = "scarlettNormal.png"
+    image scarlettTalk = "scarlettTalk.png"
 
-    # scene 6 (school) Behind Amelia, two friends leave while Scareltt approaches
+    hide twoFriends with dissolve
     Amelia "That was so fun!"
-    # two friends appear
-    # images
-    # two friends talk to Amelia, change text color to blue
-    Amelia "Hey, do you want to hang out after school?"
-    # change text color to pink Amelia responds
-    Amelia "No sorry, I have to go home and... um... study"
-    # two friends respond
-    # change text color to blue
-    Amelia "oh, okay. Maybe next time!"
-    # two friends leave
+    show scarlettNorm at bottom_right2 with dissolve
+   
+    Amelia "*Thinks* Hmm what does she want?"
+    menu:
+        "Question her!":
+            Amelia "No, I need to stay composed at school…"
+        "Did she notice anything weird…?":
+            Amelia "Ew…that makes me sound desperate…"
+        "Let's just say hi…":
+            Amelia "That's the best way to keep things casual."
 
+    Amelia "Hi Scarlett..! How's it going?"
+
+    Scarlett "Is everything alright with you? Your skirt looks like it's stained at the bottom…"
+    Scarlett "I thought you should know"
+    Amelia "Why is she trying to nitpick?"
+    Amelia "I mean…look at her…"
+    Amelia "Is she trying to start a fight or something??"
+    Amelia "What's her problem???"
+
+    Amelia "Why do you care, Scarlett? Everything is fine."
+    Scarlett "I just noticed…this isn't the first time I've noticed this though…"
+
+    hide scarlettNorm
+    hide scarlettTalk
+    transform bottom_right3:
+        zoom 3
+        xpos (1200)
+        ypos (50)
+    image badScarlett = "badScarlett.png"
+    show badScarlett at bottom_right3
+
+    Amelia "What's that supposed to mean?"
+    Scarlett "It's just…I've heard ur friends say some things…"
+
+    menu:
+        "What did they say?":
+            jump end_amelia_one
+
+        "Scarlett, you misheard. They would never.":
+            jump end_amelia_two
+
+label end_amelia_one:
+    hide badScarlett
+    transform bottom_right4:
+        zoom 3
+        xpos (1200)
+        ypos (50)
+    show scarlettNorm at bottom_right2 with dissolve
+
+    Scarlett "They've been making fun of you…"
+    Scarlett "...I heard they've been trying to dig up dirt on you to humiliate you…"
+    show ameliaTalk at bottom_position2
+    Amelia "Thanks for telling me! I'll call them over and have a chat with them, hopefully we can talk out our problems."
+    Scarlett "R-right."
+
+    hide scarlettTalk
+    show ameliaHappy at bottom_position2 with dissolve
+    Amelia "(I need to be more careful about who I trust…)"
+    Amelia "(I can't let anyone find out my secret.)"
+    Amelia "Looks like I'm going to have to be more careful about who I hang out with…"
+    n "Amelia heads to class, trying to shake off the uneasy feeling Scarlett's words left her with..."
+    n "Looks like she'll have to cut off some friendships to protect her secret…"
+    n "The End."
+    return
+
+label end_amelia_two:
+    hide ameliaTalk
+    hide ameliaHappy
+    image ameliaAngry = "angry.png"
+    show ameliaAngry at bottom_position2 with dissolve
+    Amelia "Just 'cause you have no friends, doesn't mean you can mess up my friendships…"
+    Scarlett "No! I would never spread rumors…I just-"
+
+    Amelia "Scarlett. Can we please just talk about this after school?"
+    Scarlett "Oh…uh yeah, that works I guess…"
+
+    hide ameliaAngry
+    hide badScarlett
+
+    n "The next day at school..."
+    show ameliaHappy at bottom_position2 with dissolve
+    Amelia "I better go say hello to my friends!"
+    image twoFriends2 = "friendsTalk.png"
+
+    transform bottom_right2:
+        zoom 3
+        xpos (1000)
+        ypos (100)
+
+    show twoFriends2 at bottom_right2 with dissolve
+
+    friend "Hey Amelia! Over here!"
+    friend "Something crazy happened yesterday…"
+    friend "Apparently some girl named Scarlett died from Tuberculosis!"
+    friend "She seemed fine when I saw her last week though…"
+
+    Amelia "Oh no..."
+    Amelia "That's so sad…"
+    hide twoFriends2 with dissolve
+
+    image ameliaNorm = "AmeliaTalksNormal?.png"
+    show ameliaNorm at bottom_position2
+    Amelia "(I guess that's what happens when you try to dig up dirt on people…)"
+    n "The End..."
+    
+    
+
+
+
+
+    
     
 
 
