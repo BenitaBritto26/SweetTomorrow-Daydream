@@ -5,6 +5,19 @@
 
 define e = Character("Amelia")
 image clouds = "clouds.png"
+image nightgown = "nightgown.png"
+
+
+transform bottom_position:
+    # Scale the image a bit and place it centered at the bottom.
+    zoom 2.5
+    xalign 0.5
+    # yalign 1.0 places the image at the bottom of the window. The
+    # original used 2.0 which is outside the usual 0..1 range.
+    yalign 1.0
+    # Additional vertical offset if you want it further down.
+    yoffset 600
+    # Even further down
 
 # The game starts here.
 
@@ -12,15 +25,12 @@ label start:
 
     # Show clouds background with no character or text for 4 seconds
     scene clouds
-    # DOES THIS CHANGE ANYTHING
-    
+
     # Wait for 4 seconds with no dialogue or characters
     $ renpy.pause(2.5, hard=True)
-    
-    # Show interstellar image popping up
-    show interstellar with dissolve
 
-    # These display lines of dialogue.
+    # Show the nightgown image positioned at the bottom
+    show nightgown at bottom_position with dissolve
    
     e "Hi, welcome to Sweet Tomorrow!"
     # changes
@@ -33,7 +43,7 @@ label start:
             return
     e "What should Amelia wear today?"
     menu:
-        "Uniform 1"::
+        "Uniform 1":
             e "Good choice!"
         "Uniform 2":
             e "Sorry, I don't want to wear that. We're going to wear uniform 1"
@@ -69,9 +79,9 @@ label start:
     e "Did someone call me?"
     menu:
         "Ignore them and keep walking":
-            e "It’s fine, I’ll be back home later so I can catch up with them later if it’s important!"
+            e "It's fine, I'll be back home later so I can catch up with them later if it's important!"
         "Turn around to see who it is":
-            e "No, I’ll run late if I stay to chat…I should head out!"
+            e "No, I'll run late if I stay to chat…I should head out!"
     #narrator
     # this is in the loading screen mode thing, scene 4
     e "Amelia heads to school..."
@@ -97,15 +107,16 @@ label start:
     e "Scareltt approaches Amelia"
     e "In Amelia's mind: *Hmm, what does she want?*"
     label choices_menu:
-        e "Question her!":
-            e "No, I need to stay composed at school…"
-            jump choices_menu
-        e "Did she notice anything weird…?"
-            e "Ew… that makes me sound desperate…"
-            jump choices_menu
-        e "Let's just say hi...":
-            e "Yeah, that sounds good."
-            jump after_choices
+        menu:
+            "Question her!":
+                e "No, I need to stay composed at school…"
+                jump choices_menu
+            "Did she notice anything weird…?":
+                e "Ew… that makes me sound desperate…"
+                jump choices_menu
+            "Let's just say hi...":
+                e "Yeah, that sounds good."
+                jump after_choices
 
     label after_choices:
         # Amelia
