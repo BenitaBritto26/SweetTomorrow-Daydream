@@ -43,6 +43,11 @@ transform bottom_position3:
     xoffset 100
     yoffset 200
 
+bottom_position_bloody:
+    zoom 3
+    xoffset 10
+    yoffset 150
+
 transform top_left:
     zoom 1
     xalign -0.3
@@ -353,9 +358,9 @@ label end_amelia_one:
     hide poster
 
     scene bg livingroom
-    show bloody_amelia at bottom_position2
+    show bloody_amelia at bottom_position_bloody
     e "Well, that was one sweet tomorrow..."
-    show text "To be continued..." at truecenter with dissolve
+    show text "To be continued..." at truecenter, yoffset 100 with dissolve
     return
 
 # ====================
@@ -455,9 +460,9 @@ label ending_scarlett:
     hide poster_scarlett
 
     scene bg livingroom
-    show bloody_amelia at bottom_position2
+    show bloody_amelia at bottom_position_bloody
     e "Well, that was one sweet tomorrow..."
-    show text "To be continued..." at truecenter with dissolve
+    show text "To be continued..." at truecenter, yoffset 100 with dissolve
     
     return
 label ending_2friends:
@@ -469,7 +474,7 @@ label ending_2friends:
     hide Scarlett Anxious
     hide ameliaTalk
     show bg black with fade
-    show missingposter_twofriend at truecenter
+    show missingposter_twofriend at truecenter, yoffset 100
     newscaster "Breaking news, Lilah and Celeste, 2 13-year old highschoolers, have gone missing!"
     scene bg livingroom
     #Scene 9 (living room) Amelia seems upset as she stands in her living room, already ready for school
@@ -487,10 +492,10 @@ label ending_2friends:
     hide ameliaTalk
     show bg black with fade
     image trashbags = "trashbags.png"
-    show trashbags at truecenter
+    show trashbags at truecenter, yoffset 100
     hide
     newscaster "In other news, two teenagers have gone missing in the city. Authorities are investigating the disappearances."
-    show trashbags at truecenter
+    show trashbags at truecenter, yoffset 100
     newscaster "2 days later: The teenagers were brutally murdred and stuffed in trashbags, their bodies found in an alleyway."
     # When Amelia talks, scenes of her talking to her friends cut to scenes of her with large trash bags
     show bg school
@@ -506,9 +511,9 @@ label ending_2friends:
     black screen
     e "Well it was me or them…"
     hide ameliaTalk #change if scary amelia is made
-    show bloody_amelia at bottom_position2
+    show bloody_amelia at bottom_position_bloody
     hide bloody_amelia
-    show text "To be continued..." at truecenter with dissolve
+    show text "To be continued..." at truecenter, yoffset 100 with dissolve
     return
 narrator "No one died, good job."
 return
