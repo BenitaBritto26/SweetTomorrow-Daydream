@@ -85,7 +85,6 @@ show nightgown at bottom_position with dissolve
 
     # These display lines of dialogue.
 
-    hide nightgown
     show talknightgown at bottom_position
    
 e "The sun's already so bright! I guess I better start getting ready for school!"
@@ -100,13 +99,13 @@ return
 =======
     # changes
     e "First, let me get dressed."
-    e "What should I wear today?"
+    e "What should I wear today? (listed from left to right)"
     hide talknightgown
     show nightgown at bottom_position
     image uniform1 = "cleanuniformonly.png"
     image uniform2 = "uncleanuniformoneonly.png"
     image uniform3 = "uncleanuniformtwoonly.png"
-    show uniform1 at top_left with dissolve
+    show uniform1 at top_left, , at xoffset 100 with dissolve
     show uniform2 at top_center with dissolve
     show uniform3 at top_right with dissolve
     
