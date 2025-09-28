@@ -303,5 +303,41 @@ label start:
     # someone calls Amelia
     n "In the background, someone calls Amelia's name..."
     Amelia "Did someone call me?"
+    menu:
+        "Ignore them and keep walking":
+            Amelia "It's fine, I'll be back home later so I can catch up with them later if it's important!"
+        "Turn around to see who it is":
+            Amelia "No, I'll run late if I stay to chat… I should head out!"
+    
+    hide ameliaTalk
+    scene bg school
+    n "Amelia heads to school..."
+
+    show ameliaHappy at bottom_position2 with dissolve
+    Amelia "I made it to school!"
+    Amelia "I better go say hello to my friends!"
+    image twoFriends = "friendsNormal.png"
+
+    transform bottom_right:
+        zoom 3
+        xpos (1000)
+        ypos (100)
+
+    show twoFriends at bottom_right with dissolve
+
+    # scene 6 (school) Behind Amelia, two friends leave while Scareltt approaches
+    Amelia "That was so fun!"
+    # two friends appear
+    # images
+    # two friends talk to Amelia, change text color to blue
+    Amelia "Hey, do you want to hang out after school?"
+    # change text color to pink Amelia responds
+    Amelia "No sorry, I have to go home and... um... study"
+    # two friends respond
+    # change text color to blue
+    Amelia "oh, okay. Maybe next time!"
+    # two friends leave
+
+    
 
 
